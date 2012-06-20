@@ -1,0 +1,93 @@
+@charset "UTF-8";
+body {
+  background: url(../images/background.jpg) no-repeat center top;
+  font: 70% "Trebuchet MS", sans-serif; margin: 50px;
+  
+}
+
+ul#icons {margin: 0; padding: 0;}
+ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+ul#icons span.ui-icon {float: left; margin: 0 4px;}
+
+#libre {
+	border-top: 4px solid green;
+}
+
+#ocupada {
+	border-top: 4px solid #FF6600;
+}
+
+#total {
+	color: #FF6600;
+	font: 16px/normal "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: right;	
+	border-bottom: 1px dotted red;
+}
+
+A:link, visited, active {text-decoration: none;}
+A:hover {text-decoration: underline;}
+
+
+#total2 {
+	color: #FF6600;
+	font: 12px/normal "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: center;	
+	border-bottom: 1px dotted red;
+	background-color:#FEDC6A;
+}
+
+        
+#totalBig {
+	color: white;
+	font:32px/normal "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align:center;
+}
+
+#listaProductos {
+	list-style-type:none;
+	margin: 1px;
+	font-family: Verdana;
+	font-size: small;
+}
+
+#listaProductos .a {
+	font-size: large;
+}
+.detalleCuenta {
+	font-family: "Andale Mono";
+	font-size: 12px;
+}
+
+.title {
+	color: #FF6600;
+	font-size: 22px;
+}
+
+.title_small {
+	color: #FF6600;
+	font-size: 14px;
+}
+
+input {
+	background-color: #FED961;
+	color: #FF6600;
+	font-size: 16px;
+}
+
+#codigoBarras {
+	font-family: "Andale Mono";
+	font-size: 16px;
+	text-align: center;
+}
+
+.cuadroResaltado {
+	background-color: #faeab0;
+}
+
+#menu {
+	font-family: "Andale Mono";
+	font-size: 18px;
+	color: blue;
+	background-color: white;
+	text-align: center;
+}

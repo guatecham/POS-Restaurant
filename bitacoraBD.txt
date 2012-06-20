@@ -1,0 +1,44 @@
+ALTER TABLE  `inf_carta` ADD  `subtipo` INT NOT NULL AFTER  `tipo`
+ALTER TABLE  `inf_carta` DROP  `descripcion` ;
+CREATE TABLE  `geempres_peregrino`.`inf_subtipos` (
+`id_subtipo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`tipo` INT NOT NULL ,
+`subtipo` VARCHAR( 30 ) NOT NULL
+) ENGINE = INNODB;
+UPDATE  `geempres_peregrino`.`inf_tipos` SET  `tipo` =  'Restaurante' WHERE  `inf_tipos`.`id_tipo` =1;
+UPDATE  `geempres_peregrino`.`inf_tipos` SET  `tipo` =  'Tienda' WHERE  `inf_tipos`.`id_tipo` =2;
+UPDATE  `geempres_peregrino`.`inf_tipos` SET  `tipo` =  'Recuerdos' WHERE  `inf_tipos`.`id_tipo` =3;
+ALTER TABLE  `inf_carta` DROP  `tipo` ;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =1;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =2;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =3;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =4;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =5;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =6;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =7;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =8;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =9;
+
+UPDATE  `geempres_peregrino`.`inf_carta` SET  `subtipo` =  '1' WHERE  `inf_carta`.`id_producto` =10;
+
+
+/* Cambio de productos */
+
+UPDATE data_detalle_ventas SET id_producto = 69 WHERE id_producto = 2;
+UPDATE data_detalle_ventas SET id_producto = 65 WHERE id_producto = 1;
+DELETE FROM  `geempres_peregrino`.`inf_carta` WHERE  `inf_carta`.`id_producto` =2;
+DELETE FROM  `geempres_peregrino`.`inf_carta` WHERE  `inf_carta`.`id_producto` =1;
+------------------------------------------------------------------------------------
+
+11/6/2012
+
+ALTER TABLE  `inf_carta` ADD  `codigoDeBarras` VARCHAR( 80 ) NOT NULL AFTER  `id_producto`
