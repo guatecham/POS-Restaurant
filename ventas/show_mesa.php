@@ -1,20 +1,4 @@
 <?php
-if ($mesa != 0) {
-?>		      
-<div class="grid_6 alpha" align="right">
-<form id="form2" name="form2" method="post" action="chg_name_mesa.php">
-	<strong>Cliente <input type="text" name="cliente" id="cliente" />
-	<input name="mesa" type="hidden" id="mesa" value="<?php echo $mesa ?>" /></strong>
-</></div>
-<?php
-} else {
-	echo "<br>";
-} // end if
-?>
-<div class="clear"></div>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<?php
 $codigoError = "";
 if (isset($_REQUEST["codigo"])) {
 	$codigoError = $_REQUEST["codigo"];
@@ -56,7 +40,7 @@ if ($producto != "") {
 }
 ?>
 
-<div class="grid_6 ui-state-highlight ui-corner-all">
+<div class="grid_10 ui-state-highlight ui-corner-all">
 <h2 class="title" align="center">Detalle</h2>
 <?php
 

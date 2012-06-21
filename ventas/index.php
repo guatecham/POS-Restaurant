@@ -51,15 +51,31 @@ if ($multiple == 0) {
 <link rel="STYLESHEET" type="text/css" href="../css/reset.css" />
 <link rel="STYLESHEET" type="text/css" href="../css/text.css" />
 <link href="../css/auxiliar.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../utilidades/css/jquery.autocomplete.css" />
 
 <! Jquery >
 <link type="text/css" href="../css/sunny/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 <script type="text/javascript" src="../utilidades/jquery/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="../utilidades/jquery/js/jquery-ui-1.8.20.custom.min.js"></script>
+<script type='text/javascript' src='../utilidades/jquery/jquery-autocomplete.js'></script>
 <! Fin - Jquery >
 
 
 <script type="text/javascript">
+
+$().ready(function() {
+	$("#producto").autocomplete("get_product_list.php", {
+		width: 360,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+});
+
 $(function(){
 
 	// Tabs
@@ -123,7 +139,9 @@ function calcularvuelto(c) {
 </script>
 </head>
 
-<body onload="javascript:document.getElementById('codigoBarras').focus()">
+<!-onload="javascript:document.getElementById('codigoBarras').focus()" ->
+
+<body>
 <?php
 $n=12;
 ?>
@@ -137,16 +155,32 @@ $n=12;
 <!-- Encabezado -->
 
 	<div class="grid_2"><h2 class="title" align="center">MESAS</h2></div>
-	<div class="grid_4"><h2 class="title" align="center">MENU</h2></div>
-	<div class="grid_5" align="right"><h2 class="title"><?php echo $cliente ?></h2></div>
+	<div class="grid_4"><?php include('menu_ac.php') ?></div>
+	<div class="grid_5" align="right">		
+		<h2 class="title"><?php echo $cliente ?></h2>
+		<?php
+			if ($mesa != 0) {
+		?>		      
+				<div class="grid_6 alpha" align="right">
+					<form id="form2" name="form2" method="post" action="chg_name_mesa.php">
+						<br>
+						<strong>Cliente <input type="text" name="cliente" id="cliente" />
+						<input name="mesa" type="hidden" id="mesa" value="<?php echo $mesa ?>" /></strong>
+					</form>
+				</div>
+<?php
+			} else {
+				echo "<br>";
+			} // end if
+?>
+	</div>
     <div class="grid_1" align="left"><img src="../images/sel_mesa<?php echo $mesa ?>.jpg" width="60" height="50" /></div>
 	<div class="clear"></div>
     
  <!-- Cuerpo (columnas) -->   
 
-    <div class="grid_2" align="center"><a href="<?php echo $_SERVER['PHP_SELF']."?mesa=0" ?>"><button id="buttonIndependiente">Ventas</button></a><p>&nbsp;</p><?php echo show_mesas($n, $mesa); ?></div>
-    <div class="grid_4"><?php include('menu.php') ?></div>
-    <div class="grid_6"><?php include ($columna3); ?></div>
+    <div class="grid_2" align="center"><?php echo show_mesas($n, $mesa); ?></div>
+    <div class="grid_10"><?php include ($columna3); ?></div>
     <div class="clear"></div>            
 
 <div class="grid_8">
