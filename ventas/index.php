@@ -152,13 +152,13 @@ $n=12;
 <!-- Encabezado -->
 
 	<div class="grid_2"><br><br><h2 class="title" align="center">MESAS</h2></div>
-	<div class="grid_4"><?php include('menu_ac.php') ?></div>
-	<div class="grid_5" align="right">		
+	<div class="grid_6"><?php include('menu_ac.php') ?></div>
+	<div class="grid_3" align="right">		
 		<h2 class="title"><?php echo $cliente ?></h2>
 		<?php
 			if ($mesa != 0) {
 		?>		      
-				<div class="grid_6 alpha" align="right">
+				<div class="grid_4 alpha" align="right">
 					<form id="form2" name="form2" method="post" action="chg_name_mesa.php">
 						<br>
 						<strong>Cliente <input type="text" name="cliente" id="cliente" />
@@ -177,8 +177,8 @@ $n=12;
  <!-- Cuerpo (columnas) -->   
 
     <div class="grid_2" align="center"><?php echo show_mesas($n, $mesa); ?></div>
-    <div class="grid_4"><?php include ($columna3); ?></div>
-    <div class="grid_2"><?php include ('show_total.php'); ?></div>
+    <div class="grid_6"><?php include ($columna3); ?></div>
+    <div class="grid_4"><?php include ('show_total.php'); ?></div>
     <div class="clear"></div>            
 
 <div class="grid_8">
