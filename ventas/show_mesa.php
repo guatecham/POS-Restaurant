@@ -1,3 +1,4 @@
+<br>
 <?php
 $codigoError = "";
 if (isset($_REQUEST["codigo"])) {
@@ -9,7 +10,7 @@ if ($codigoError != "") { ?>
 			<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
 				<br>
 				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-				<strong><?php echo "Codigo: $codigoError" ?></strong> No ha sido encontrado en el sistema.</p>
+				<strong><?php echo "Producto: $codigoError" ?></strong> No ha sido encontrado en el sistema.</p>
 			</div>
 		</div>
 	</div>	
@@ -40,7 +41,7 @@ if ($producto != "") {
 }
 ?>
 
-<div class="grid_10 ui-state-highlight ui-corner-all">
+<div class="grid_6 ui-state-highlight ui-corner-all">
 <h2 class="title" align="center">Detalle</h2>
 <?php
 

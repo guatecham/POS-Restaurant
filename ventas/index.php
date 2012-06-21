@@ -51,7 +51,6 @@ if ($multiple == 0) {
 <link rel="STYLESHEET" type="text/css" href="../css/reset.css" />
 <link rel="STYLESHEET" type="text/css" href="../css/text.css" />
 <link href="../css/auxiliar.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="../utilidades/css/jquery.autocomplete.css" />
 
 <! Jquery >
 <link type="text/css" href="../css/sunny/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
@@ -62,20 +61,6 @@ if ($multiple == 0) {
 
 
 <script type="text/javascript">
-
-$().ready(function() {
-	$("#producto").autocomplete("get_product_list.php", {
-		width: 360,
-		matchContains: true,
-		//mustMatch: true,
-		//minChars: 0,
-		//multiple: true,
-		//highlight: false,
-		//multipleSeparator: ",",
-		selectFirst: false
-	});
-});
-
 $(function(){
 
 	// Tabs
@@ -90,6 +75,18 @@ $(function(){
 		function() { $(this).addClass('ui-state-hover'); },
 		function() { $(this).removeClass('ui-state-hover'); }
 	);
+
+	$("#producto").autocomplete("get_product_list.php", {
+		width: 360,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+
 	
 });	
 </script>
@@ -139,9 +136,9 @@ function calcularvuelto(c) {
 </script>
 </head>
 
-<!-onload="javascript:document.getElementById('codigoBarras').focus()" ->
+<!-onload="javascript:document.getElementById('producto').focus()" ->
 
-<body>
+<body onload="javascript:document.getElementById('producto').focus()">
 <?php
 $n=12;
 ?>
@@ -154,7 +151,7 @@ $n=12;
 
 <!-- Encabezado -->
 
-	<div class="grid_2"><h2 class="title" align="center">MESAS</h2></div>
+	<div class="grid_2"><br><br><h2 class="title" align="center">MESAS</h2></div>
 	<div class="grid_4"><?php include('menu_ac.php') ?></div>
 	<div class="grid_5" align="right">		
 		<h2 class="title"><?php echo $cliente ?></h2>
@@ -180,7 +177,8 @@ $n=12;
  <!-- Cuerpo (columnas) -->   
 
     <div class="grid_2" align="center"><?php echo show_mesas($n, $mesa); ?></div>
-    <div class="grid_10"><?php include ($columna3); ?></div>
+    <div class="grid_4"><?php include ($columna3); ?></div>
+    <div class="grid_2"><?php include ('show_total.php'); ?></div>
     <div class="clear"></div>            
 
 <div class="grid_8">

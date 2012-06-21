@@ -12,7 +12,7 @@ mysql_select_db("geempres_peregrino");
 	
 	
 // Comienza la funcion	
-$a='';	
+$a='<p>&nbsp;</p>';	
 $ao = '';
 for ($i=1;$i<=$n;$i++) {
 	

@@ -68,6 +68,11 @@ A:hover {text-decoration: underline;}
 	font-size: 14px;
 }
 
+.small_id {
+	color: white;
+	font-size: 8px;
+}
+
 input {
 	background-color: #FED961;
 	color: #FF6600;
