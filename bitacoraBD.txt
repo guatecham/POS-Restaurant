@@ -47,3 +47,12 @@ ALTER TABLE  `inf_carta` ADD  `codigoDeBarras` VARCHAR( 80 ) NOT NULL AFTER  `id
 22/6/2012
 
 ALTER TABLE  `data_ventas` ADD  `vale` VARCHAR( 40 ) NOT NULL
+
+------------------------------------------------------------------------------------
+
+ALTER TABLE  `inf_carta` ADD  `provider` INT NOT NULL;
+
+CREATE TABLE  `geempres_peregrino`.`inf_providers` (
+`id_provider` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`provider` VARCHAR( 50 ) NOT NULL
+) ENGINE = INNODB;
