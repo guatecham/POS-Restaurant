@@ -79,6 +79,12 @@ input {
 	font-size: 16px;
 }
 
+.searchProduct {
+	background-color: #FED961;
+	color: #FF6600;
+	font-size: 24px;
+}
+
 #codigoBarras {
 	font-family: "Andale Mono";
 	font-size: 16px;
