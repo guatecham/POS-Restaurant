@@ -2,15 +2,15 @@
 include ("../utilidades/conex.php");
 $mesa=$_REQUEST["mesa"];
 $producto=$_REQUEST["producto"];
+$cantidad=$_REQUEST["cantidad"];
 $hora=date("G:i");
 
 $id_producto =0;
 if (strpos($producto,":") > 0) {
 	$id_producto = substr($producto,strpos($producto,":")+1);
 } else {
-	$codigo	= substr($producto,0,strpos($producto,":")-1);
-	if ($codigo != "") {
-		$sql="SELECT id_producto FROM inf_carta WHERE codigoDeBarras = '$codigo'";
+	if ($producto != "") {
+		$sql="SELECT id_producto FROM inf_carta WHERE codigoDeBarras = '$producto'";
 		$rs=mysql_query($sql,$db);
 		if (mysql_num_rows($rs) > 0) {
 			$row=mysql_fetch_object($rs);
@@ -26,11 +26,10 @@ if (mysql_num_rows($rs) > 0) {
 	$result=mysql_query($sql,$db);
 	if (mysql_num_rows($result) > 0) { // si ya hay registros para este producto
 		$row=mysql_fetch_array($result);
-		$c=$row["cantidad"];
-		$c++;
+		$c=$row["cantidad"]+$cantidad;
 		$sql="UPDATE tmp_ventas SET cantidad=$c WHERE mesa=$mesa AND producto=$id_producto";
 	} else { // el producto todavia no existe en la base de datos temporal 
-		$sql="INSERT INTO tmp_ventas (mesa, cantidad, producto,hora) VALUES ($mesa, 1, $id_producto,'$hora')";
+		$sql="INSERT INTO tmp_ventas (mesa, cantidad, producto,hora) VALUES ($mesa, $cantidad, $id_producto,'$hora')";
 	}
 	$result=mysql_query($sql);
 

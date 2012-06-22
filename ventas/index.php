@@ -59,7 +59,6 @@ if ($multiple == 0) {
 <script type='text/javascript' src='../utilidades/jquery/jquery-autocomplete.js'></script>
 <! Fin - Jquery >
 
-
 <script type="text/javascript">
 $(function(){
 
@@ -113,17 +112,6 @@ function validarPago(t) {
 
 } // end function
 
-/*
-function validarVuelto() {
-	if (isNaN(document.getElementById('cantidad').value) || document.getElementById('cantidad').value <= 0 ) {
-		document.getElementById('cantidad').value = "";
-		alert("La cantidad debe ser un numero mayor que 0");
-	} else {		
-		document.getElementById('frm_vuelto').submit();
-	}
-} // end function
-*/
-
 function calcularvuelto(c) {
 	a=document.getElementById('pagaCon').value;
 	b=a-c;
@@ -133,10 +121,18 @@ function calcularvuelto(c) {
 	
 } // end function
 
+function validarProducto() {
+	if (isNaN(document.getElementById('cantidad').value) || document.getElementById('cantidad').value < 1) {
+		document.getElementById('cantidad').value = 1
+	}
+	
+	document.getElementById('frm_autocomplete').submit()
+}
+
+
 </script>
 </head>
 
-<!-onload="javascript:document.getElementById('producto').focus()" ->
 
 <body onload="javascript:document.getElementById('producto').focus()">
 <?php

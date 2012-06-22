@@ -18,7 +18,7 @@ $sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) > 0) {	
 ?>
-<table width="90%" border="0" align="right" cellpadding="0" cellspacing="1">
+<table width="95%" border="0" align="right" cellpadding="0" cellspacing="1">
 <?php
 while ($row=mysql_fetch_object($rs)) {
 ?>					  
@@ -28,9 +28,9 @@ while ($row=mysql_fetch_object($rs)) {
                 <li class="ui-state-default ui-corner-all" title=".ui-icon-icon-trash-1-w"><span class="ui-icon ui-icon-trash"></span>
                 </li></ul></a>
         </td>
-        <td width="15%" align="center"><?php echo $row->cantidad ?></td>
-        <td width="50%" align="left"><?php echo utf8_encode($row->producto) ?></td>
-        <td width="25%" align="right"><strong><?php echo "Q. ".$row->cantidad * $row->precio ?></strong></td>
+        <td width="5%" align="center"><?php echo $row->cantidad ?></td>
+        <td width="70%" align="left"><?php echo utf8_encode($row->producto) ?></td>
+        <td width="15%" align="right"><strong><?php echo "Q. ".$row->cantidad * $row->precio ?></strong></td>
       </tr>                      
 <?php
 } // end while
