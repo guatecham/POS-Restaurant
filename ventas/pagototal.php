@@ -3,6 +3,7 @@ include ("../utilidades/conex.php");
 
 $mesa=$_REQUEST["mesa"];
 $total=$_REQUEST["total"];
+$valea=$_REQUEST["valea"];
 
 $fecha=date("Y-m-d");
 $hora_cuenta=date("G:i");
@@ -11,7 +12,7 @@ $hora_cuenta=date("G:i");
 $nombre_usuario	= $_SESSION["nombre_usuario"]; */
 $comentarios	= "Venta";
 
-$sql="INSERT INTO data_ventas (mesa, total, fecha, hora_cuenta) VALUES ($mesa, '$total', '$fecha', '$hora_cuenta')";
+$sql="INSERT INTO data_ventas (mesa, total, fecha, hora_cuenta, vale) VALUES ($mesa, '$total', '$fecha', '$hora_cuenta', '$valea')";
 $result=mysql_query($sql,$db);
 
 

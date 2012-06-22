@@ -42,3 +42,8 @@ DELETE FROM  `geempres_peregrino`.`inf_carta` WHERE  `inf_carta`.`id_producto` =
 11/6/2012
 
 ALTER TABLE  `inf_carta` ADD  `codigoDeBarras` VARCHAR( 80 ) NOT NULL AFTER  `id_producto`
+------------------------------------------------------------------------------------
+
+22/6/2012
+
+ALTER TABLE  `data_ventas` ADD  `vale` VARCHAR( 40 ) NOT NULL

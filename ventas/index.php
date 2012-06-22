@@ -86,6 +86,12 @@ $(function(){
 		selectFirst: false
 	});
 
+	$("#valea").autocomplete("get_vales_list.php", {
+		width: 200,
+		matchContains: true,
+		selectFirst: false
+	});
+	
 	
 });	
 </script>
@@ -122,13 +128,17 @@ function calcularvuelto(c) {
 } // end function
 
 function validarProducto() {
-	if (isNaN(document.getElementById('cantidad').value) || document.getElementById('cantidad').value < 1) {
+	if (isNaN(document.getElementById('cantidad').value) /*|| document.getElementById('cantidad').value < 1*/) {
 		document.getElementById('cantidad').value = 1
 	}
 	
-	document.getElementById('frm_autocomplete').submit()
+	document.getElementById('frm_autocomplete').submit();
 }
 
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==13) document.getElementById('frm_autocomplete').submit();
+}
 
 </script>
 </head>

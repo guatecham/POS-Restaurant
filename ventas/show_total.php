@@ -12,7 +12,7 @@ if ($total > 0) {
 <br>
 <div class="grid_4 ui-state-highlight ui-corner-all">
 <br>
-<form name="myform" action="pagototal.php">  
+<form autocomplete="off" name="myform" action="pagototal.php">  
      <!- Pago !>          
      <div class="grid_2 alpha title_small" align="right">Paga con Q.</div>
      <div class="grid_2 omega">
@@ -29,6 +29,11 @@ if ($total > 0) {
      <div class="clear"></div>
         <br>
 	
+	
+	<div class="grid_4 alpha" align="center">
+		<label class="title_small">Vale a </label><input type="text" size="20" name="valea" id="valea">
+	</div>
+	<p>&nbsp;</p>
 	<!- Botones ->
      <div class="grid_3 alpha" align="right">
          <input type="button" value="Realizar pago" onclick="javascript: validarPago('<?php echo $total ?>');"/>
