@@ -56,3 +56,13 @@ CREATE TABLE  `geempres_peregrino`.`inf_providers` (
 `id_provider` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `provider` VARCHAR( 50 ) NOT NULL
 ) ENGINE = INNODB;
+
+INSERT INTO  `geempres_peregrino`.`inf_providers` (
+`id_provider` ,
+`provider`
+)
+VALUES (
+NULL ,  'Chap'
+), (
+NULL ,  'Marisa'
+);

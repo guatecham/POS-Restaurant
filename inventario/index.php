@@ -11,6 +11,7 @@ include ('../utilidades/conex.php');
 <link rel="STYLESHEET" type="text/css" href="../css/reset.css" />
 <link rel="STYLESHEET" type="text/css" href="../css/text.css" />
 <link href="../css/auxiliar.css" rel="stylesheet" type="text/css" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
 
 <! Jquery >
 <link type="text/css" href="../css/sunny/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
@@ -20,9 +21,8 @@ include ('../utilidades/conex.php');
 
 <script type="text/javascript">
 $(function(){
-	// Accordion
-	$("#accordion").accordion({ header: "h3" });
-	$( "#accordion" ).accordion({ autoHeight: false });
+	// Tabs
+	$('#tabs').tabs();
 	
 	//hover states on the static widgets
 	$('#dialog_link, ul#icons li').hover(
@@ -31,6 +31,13 @@ $(function(){
 	);
 	
 });	
+
+$(document).ready(function () {
+    $('img.menu_class').click(function () {
+	$('ul.the_menu').slideToggle('medium');
+    });
+});
+
 </script>
 
 <script type="text/javascript" >
@@ -110,12 +117,9 @@ function validar_eliminar(id_producto, producto) {
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>  
-        <div class="grid_5"><h2 class="title" align="center">Lista de productos</h2></div>
-        <div class="grid_7"><h2 class="title" align="center">Detalle</h2></div>    
-        <div class="clear"></div>
-        <div class="grid_5"><?php include ('list.php') ?></div>
-        <div class="grid_7"><?php include ('detalle.php') ?></div>
-        <div class="clear"></div><br>
+        <div class="grid_5"><?php include ('list_pag.php') ?></div>
+        <div class="grid_7"><h2 class="title" align="center">Detalle</h2><?php include ('detalle.php') ?></div>    
+         <div class="clear"></div><br>
         <div class="grid_12"><?php include ('historial.php') ?></div>"
     </div>
 </body>

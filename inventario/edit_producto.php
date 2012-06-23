@@ -13,6 +13,7 @@ $precio			= $_REQUEST["precio"];
 $nombre			= $_REQUEST["nombre"];
 $codigo			= $_REQUEST["codigo"];
 $id_producto	= $_REQUEST["id_producto"];
+$provider		= $_REQUEST["providers"];
 
 if (isset($_REQUEST["inventariado"])) {
 	$inventariado = $_REQUEST["inventariado"];
@@ -31,6 +32,7 @@ $sql.="codigoDeBarras = '$codigo', ";
 $sql.="precio = '$precio', ";
 $sql.="subtipo = $subtipo, ";
 $sql.="reorden = $recompra, ";
+$sql.="provider = $provider, ";
 $sql.="inventariado = $inventariado ";
 
 if ($id_producto != 0) {

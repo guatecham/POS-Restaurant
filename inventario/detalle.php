@@ -12,13 +12,14 @@ if (isset($_REQUEST["producto"])) {
 	$precio			= $row->precio;
 	$producto		= $row->producto;
 	$codigo			= $row->codigoDeBarras;
+	$provider		= $row->provider;
 	
 	$boton = "Modificar";
 } else {
 	$id_producto = 0;
 	$show_producto = "[Nuevo Producto]";
 	
-	$inventariado = $recompra = $tipo = $precio	= $descripcion = $producto = $codigo = "";
+	$inventariado = $recompra = $tipo = $precio	= $descripcion = $producto = $codigo = $provider = "";
 	
 	$boton = "Agregar";
 }
@@ -109,6 +110,48 @@ if ($inventariado == 1) {
 	<div class="grid_4">
 		<input name="codigo" type="text" id="codigo" value="<?php echo $codigo ?>" size="32" /></div>
 	<div class="clear"></div><br>
+	
+	<div class="grid_2 title_small alpha" align="right">Proveedor</div>
+	<div class="grid_2 omega">
+	<?php
+	if ($provider == 0) {
+		$aux = 'selected="selected"';
+	} else {
+		$aux = '';
+	}
+	?>
+		<select name="providers" id="providers">
+			<option value="0" <?php echo $aux ?> >-------</option>
+			<?php
+			$sql="SELECT * FROM inf_providers ORDER by provider";
+			$rs=mysql_query($sql,$db);
+			while ($row=mysql_fetch_object($rs)) { 
+				if ($row->id_provider == $provider) {
+					$aux = 'selected="selected"';
+				} else {
+					$aux = '';
+				}
+			?>
+				<option value="<?php echo $row->id_provider ?>" <?php echo $aux ?>><?php echo $row->provider ?></option>				
+			<?php
+			}
+			?>
+		</select>
+	</div>	
+	<div class="clear"></div><br>
+
+<?php
+/*
+<select name="colores">
+   <option value="blanco">blanco</option>
+   <option value="amarillo">amarillo</option>
+   <option value="verde">verde</option>
+   <option value="rojo">rojo</option>
+   <option value="azul">azul</option>
+  <option value="negro">negro</option>
+ </select>
+*/ 
+?>
 	
 	<div class="grid_2"><span class="obligatorio">* Campos obligatorios</span></div>
 	<div class="clear"></div><br>
