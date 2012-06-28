@@ -14,6 +14,7 @@ $nombre			= $_REQUEST["nombre"];
 $codigo			= $_REQUEST["codigo"];
 $id_producto	= $_REQUEST["id_producto"];
 $provider		= $_REQUEST["providers"];
+$pagina			= $_REQUEST["pagina"];
 
 if (isset($_REQUEST["inventariado"])) {
 	$inventariado = $_REQUEST["inventariado"];
@@ -41,9 +42,16 @@ if ($id_producto != 0) {
 
 $result=mysql_query($sql,$db);
 if ($id_producto == 0) {
-	$id_producto = mysql_insert_id($result);
+		$id_producto = mysql_insert_id($db);
 }
 
-header("Location: index.php?producto=$id_producto");
+$sql="SELECT * FROM inf_carta WHERE id_producto = $id_producto";
+$rs=mysql_query($sql,$db);
+$row=mysql_fetch_object($rs);
+
+$subtipo=$row->subtipo;
+
+
+header("Location: index.php?producto=$id_producto&subtipo=$subtipo&pagina=$pagina");
 
 ?>

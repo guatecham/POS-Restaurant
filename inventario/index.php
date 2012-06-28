@@ -1,5 +1,14 @@
 <?php
 include ('../utilidades/conex.php'); 
+
+if (isset($_REQUEST["subtipo"])) {
+	$sql="SELECT * FROM inf_subtipos WHERE id_subtipo = ".$_REQUEST["subtipo"];
+	$rs=mysql_query($sql,$db);
+	$row=mysql_fetch_object($rs);
+	$titulo = $row->subtipo;
+} else {
+	$titulo = "Detalle";
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -118,7 +127,7 @@ function validar_eliminar(id_producto, producto) {
         <p>&nbsp;</p>
         <p>&nbsp;</p>  
         <div class="grid_5"><?php include ('list_pag.php') ?></div>
-        <div class="grid_7"><h2 class="title" align="center">Detalle</h2><?php include ('detalle.php') ?></div>    
+        <div class="grid_7"><h2 class="title" align="center"><?php echo $titulo ?></h2><?php include ('detalle.php') ?></div>    
          <div class="clear"></div><br>
         <div class="grid_12"><?php include ('historial.php') ?></div>"
     </div>

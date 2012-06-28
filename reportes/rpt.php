@@ -97,7 +97,7 @@ while ($row=mysql_fetch_object($rs)) {
 $a.='<div class="grid_2 alpha title_small"><strong>'.$row->vale.'</strong></div><div class="clear"></div>';
 
 $total=0;
-$sql="SELECT * FROM data_ventas WHERE vale LIKE '$row->vale'";
+$sql="SELECT * FROM data_ventas WHERE vale LIKE '$row->vale' AND fecha BETWEEN '$desdeSQL' AND '$hastaSQL'";
 $rsB=mysql_query($sql,$db);
 while ($rowB=mysql_fetch_object($rsB)) {
 	$sql="SELECT * FROM data_detalle_ventas INNER JOIN inf_carta ON data_detalle_ventas.id_producto = inf_carta.id_producto WHERE id_venta = $rowB->id_venta";

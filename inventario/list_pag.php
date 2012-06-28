@@ -105,7 +105,7 @@ $numeroRegistros=mysql_num_rows($rs);
 <div class="clear"></div>
 <div class="grid_5 ui-state-highlight ui-corner-all omega" align="center">
 <p>&nbsp;</p>
-<table width="90%">
+<table width="90%" class="tabla">
 	<tr class="title_small">
 		<td >Cant.</td>
 		<td>Producto</td>
@@ -147,11 +147,11 @@ while ($row=mysql_fetch_object($rs)) {
 <br>
 <?php
 for ($i=1;$i<=$numPags;$i++) { ?>
-	<a href="index.php?tipo=<?php echo $tipo ?>&subtipo=<?php echo $subtipo ?>&pagina=<?php echo $i ?>"><?php echo $i." "; ?></a>
+	&nbsp;<a href="index.php?tipo=<?php echo $tipo ?>&subtipo=<?php echo $subtipo ?>&pagina=<?php echo $i ?>"><?php echo $i." "; ?></a>&nbsp;
 <?php
 }
 ?>
-
+<p>&nbsp;</p>
 </div>
  
  

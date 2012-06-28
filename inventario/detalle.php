@@ -81,7 +81,7 @@ if ($inventariado == 1) {
 					$sql="SELECT * FROM inf_subtipos";
 					$result=mysql_query($sql,$db);
 					while ($row=mysql_fetch_object($result)) {
-						if ($row->id_subtipo == $tipo) {
+						if ($row->id_subtipo == $subtipo) {
 							$aux = 'selected="selected"';
 						} else {
 							$aux = '';
@@ -138,21 +138,7 @@ if ($inventariado == 1) {
 			?>
 		</select>
 	</div>	
-	<div class="clear"></div><br>
-
-<?php
-/*
-<select name="colores">
-   <option value="blanco">blanco</option>
-   <option value="amarillo">amarillo</option>
-   <option value="verde">verde</option>
-   <option value="rojo">rojo</option>
-   <option value="azul">azul</option>
-  <option value="negro">negro</option>
- </select>
-*/ 
-?>
-	
+	<div class="clear"></div><br>	
 	<div class="grid_2"><span class="obligatorio">* Campos obligatorios</span></div>
 	<div class="clear"></div><br>
 	
@@ -160,13 +146,15 @@ if ($inventariado == 1) {
 	<?php if ($inventariado == 0) {	?> <input name="recompra" type="hidden" id="recompra" value="0" /><?php } // end if ?>
     <input name="id_producto" type="hidden" id="id_producto" value="<?php echo $id_producto ?>" />
     <input type="button" name="button" id="button" value="<?php echo $boton ?>" onclick="validar_edicion('<?php echo $recompra ?>','<?php echo $precio ?>','<?php echo $producto ?>')" />	
+	<input type="hidden" name="pagina" value="<?php echo $pagina ?>">
 	</div>
+	<div class="clear"></div>
 <?php
 $sql="SELECT * FROM data_detalle_ventas WHERE id_producto = $id_producto";
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) == 0 && $id_producto != 0) {
 ?>	
-	<div class="grid_1" align="right">
+	<div class="prefix_3 grid_1" align="right">
 	<ul id="icons" class="ui-widget ui-helper-clearfix">
 <li class="ui-state-default ui-corner-all" title=".ui-icon-trash">
 <a href="#" onclick="validar_eliminar('<?php echo $id_producto ?>','<?php echo $producto ?>')">
