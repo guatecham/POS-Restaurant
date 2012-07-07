@@ -13,11 +13,11 @@ $mesa=$_REQUEST["mesa"];
 <!--
 .Estilo1 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
+	font-size: 18px;
 }
 .Estilo6 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
 .Estilo7 {
-	font-size: 14px;
+	font-size: 22px;
 	color: #FF0000;
 }
 .Estilo8 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }
@@ -43,6 +43,37 @@ $mesa=$_REQUEST["mesa"];
     <td width="256" class="Estilo1"><div align="right"><span class="Estilo10"><?php echo date("d/m/Y")." / ".date("G:i a"); ?></span></div></td>
   </tr>
 </table>
+
+
+<p>&nbsp;</p>
+<h2 class="Estilo7">Pedido</h2>
+<?php
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND mesa = $mesa";
+$rs=mysql_query($sql,$db);
+if (mysql_num_rows($rs) > 0) {	
+?>
+<table width="400" border="0" align="left" cellpadding="0" cellspacing="1">
+<?php
+while ($row=mysql_fetch_object($rs)) {
+?>					  
+        <tr class="Estilo1">	
+	        <td align="center"><?php echo $row->cantidad ?>&nbsp;</td>
+	        <td align="left"><?php echo utf8_encode($row->producto) ?></td>
+      </tr>                      
+<?php
+} // end while
+$total+=$subtotal;
+?>  
+  </table>
+<br><br>
+
+<?php  
+} // end if
+?>
+
+
+<?php
+/*
 <table width="400" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td colspan="2" class="Estilo1"><hr /></td>
@@ -72,6 +103,7 @@ while ($row=mysql_fetch_array($result)) {
  } // end while
  ?>
 </table>
+*/ ?>
 <p class="Estilo6 Estilo7">&nbsp;</p>
 </body>
 </html>

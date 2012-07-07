@@ -1,4 +1,4 @@
-<?php
+   <?php
 include ("../utilidades/conex.php");
 
 $mesa=$_REQUEST["mesa"];
@@ -43,95 +43,48 @@ $mesa=$_REQUEST["mesa"];
     <td width="256" class="Estilo1"><div align="right"><?php echo date("d/m/Y")." / ".date("G:i a"); ?></div></td>
   </tr>
 </table>
-<table width="320" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td colspan="4" class="Estilo1"><hr /></td>
-  </tr>
-  <tr>
-    <td colspan="2" class="Estilo1"><strong>COMIDAS</strong></td>
-    <td width="72" class="Estilo1">&nbsp;</td>
-    <td width="75" class="Estilo1">&nbsp;</td>
-  </tr>
+
+<p>&nbsp;</p>
+<h2 class="Estilo7">Detalle</h2>
 <?php
-$totalComidas=0;
-$sql="SELECT * FROM tmp_ventas WHERE mesa=$mesa";
-$result=mysql_query($sql,$db);
-while ($row=mysql_fetch_array($result)) {
- 	$p=$row["producto"];
-	$sql="SELECT * FROM inf_carta WHERE id_producto=$p";
-	$resultB=mysql_query($sql,$db);
-	$rowB=mysql_fetch_array($resultB);
-	if ($rowB["tipo"] == 2) {
-		$subtotal=$row["cantidad"] * $rowB["precio"];	
-		$totalComidas+=$subtotal;
- ?> 
-  <tr>
-    <td colspan="2" class="Estilo1">&nbsp;</td>
-    <td class="Estilo1">&nbsp;</td>
-    <td class="Estilo1">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="35" class="Estilo1"><?php echo $row["cantidad"] ?></td>
-    <td width="138" class="Estilo1"><?php echo $rowB["producto"] ?></td>
-    <td class="Estilo1"><?php echo $rowB["precio"].".00" ?></td>
-    <td class="Estilo1"><div align="right"><?php echo $subtotal.".00" ?></div></td>
-  </tr>
- <?php
- 	} // end if
- } // end while
- ?>
-  <tr>
-    <td class="Estilo1">&nbsp;</td>
-    <td colspan="2" class="Estilo6">&nbsp;</td>
-    <td class="Estilo1"><hr align="right" /></td>
-  </tr>
-  <tr>
-    <td class="Estilo1">&nbsp;</td>
-    <td colspan="2" class="Estilo6"><div align="right">TOTAL COMIDAS </div></td>
-    <td class="Estilo8"><div align="right"><?php echo "Q.".$totalComidas.".00" ?></div></td>
-  </tr>
-</table>
-<table width="320" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td colspan="2" class="Estilo1"><strong>BEBIDAS</strong></td>
-    <td width="72" class="Estilo1">&nbsp;</td>
-    <td width="75" class="Estilo1">&nbsp;</td>
-  </tr>
-  <?php
-$totalBebidas=0;
-$sql="SELECT * FROM tmp_ventas WHERE mesa=$mesa";
-$result=mysql_query($sql,$db);
-while ($row=mysql_fetch_array($result)) {
- 	$p=$row["producto"];
-	$sql="SELECT * FROM inf_carta WHERE id_producto=$p";
-	$resultB=mysql_query($sql,$db);
-	$rowB=mysql_fetch_array($resultB);
-	if ($rowB["tipo"] == 1) {
-		$subtotal=$row["cantidad"] * $rowB["precio"];	
-		$totalBebidas+=$subtotal;
- ?>
-  <tr>
-    <td width="35" class="Estilo1"><?php echo $row["cantidad"] ?></td>
-    <td width="138" class="Estilo1"><?php echo $rowB["producto"] ?></td>
-    <td class="Estilo1"><?php echo $rowB["precio"].".00" ?></td>
-    <td class="Estilo1"><div align="right"><?php echo $subtotal.".00" ?></div></td>
-  </tr>
-  <?php
- 	} // end if
- } // end while
- $total=$totalComidas + $totalBebidas;
- ?>
-  <tr>
-    <td class="Estilo1">&nbsp;</td>
-    <td colspan="2" class="Estilo6">&nbsp;</td>
-    <td class="Estilo1"><hr align="right" /></td>
-  </tr>
-  <tr>
-    <td class="Estilo1">&nbsp;</td>
-    <td colspan="2" class="Estilo6"><div align="right">TOTAL BEBIDAS </div></td>
-    <td class="Estilo8"><div align="right"><?php echo "Q.".$totalBebidas.".00" ?></div></td>
-  </tr>
-</table>
+$total=0;
+$sql="SELECT * FROM inf_tipos";
+$rsMain=mysql_query($sql,$db);
+while ($rowMain=mysql_fetch_object($rsMain)) {
+
+/* Calculo del subtotal del tipo */
+$sql="SELECT SUM(cantidad * precio) FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = $rowMain->id_tipo) AND mesa = $mesa";
+$rs=mysql_query($sql,$db);
+$row=mysql_fetch_array($rs);
+$subtotal = $row["SUM(cantidad * precio)"];
+/* Fin de calculo del subtotal de tipos */
+
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = $rowMain->id_tipo) AND mesa = $mesa";
+$rs=mysql_query($sql,$db);
+if (mysql_num_rows($rs) > 0) {	
+?>
+<table width="320" border="0" align="left" cellpadding="0" cellspacing="1">
+<?php
+while ($row=mysql_fetch_object($rs)) {
+?>					  
+        <tr class="Estilo1">
+        <td align="center"><?php echo $row->cantidad ?>&nbsp;</td>
+        <td align="left"><?php echo utf8_encode($row->producto) ?></td>
+        <td align="right"><?php echo "Q. ".$row->cantidad * $row->precio ?></td>
+      </tr>                      
+<?php
+} // end while
+$total+=$subtotal;
+?>  
+  </table>
+<br><br>
+
+<p><strong><?php echo "$rowMain->tipo: Q.".number_format($subtotal,2) ?></strong></p>
+<?php  
+} // end if
+} // end while (tipos)
+?>
+
 <table width="320" border="0" cellspacing="2" cellpadding="0">
 <tr>
     <td><hr /></td>

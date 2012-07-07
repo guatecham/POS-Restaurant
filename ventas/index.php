@@ -28,17 +28,6 @@ if (isset($_REQUEST["tipo"])) {
 	$tipo = 1;
 }
 
-if (isset($_REQUEST["multiple"])) {
-	$multiple=$_REQUEST["multiple"];
-} else { 
-	$multiple = 0;
-}
-
-if ($multiple == 0) {
-	$columna3 = "show_mesa.php";
-} else {
-	$columna3 = "add_multiple.php";
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -183,7 +172,7 @@ $n=12;
  <!-- Cuerpo (columnas) -->   
 
     <div class="grid_2" align="center"><?php echo show_mesas($n, $mesa); ?></div>
-    <div class="grid_6"><?php include ($columna3); ?></div>
+    <div class="grid_6"><?php include ('show_mesa.php'); ?></div>
     <div class="grid_4"><?php include ('show_total.php'); ?></div>
     <div class="clear"></div>            
 

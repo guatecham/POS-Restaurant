@@ -42,8 +42,20 @@ $total+=$subtotal;
 } // end if
 } // end while (tipos)
 ?>
-</div>    
-
+<?php
+if ($total > 0) {
+?>	
+<table width="95%" border="0" align="center">
+	<tr>
+	<td>&nbsp;</td>
+	<td><ul id="icons" class="ui-widget ui-helper-clearfix"><a href="cuentaplain.php?mesa=<?php echo $mesa ?>" target="_blank"><li class="ui-state-default ui-corner-all" title=".ui-icon-calculator"><span class="ui-icon ui-icon-calculator"></span>Imprimir cuenta &nbsp;&nbsp;</li></a></ul></td>
+	<td><ul id="icons" class="ui-widget ui-helper-clearfix"><a href="ordencocina.php?mesa=<?php echo $mesa ?>" target="_blank"><li class="ui-state-default ui-corner-all" title=".ui-icon-script"><span class="ui-icon ui-icon-script"></span>Orden cocina &nbsp;&nbsp;</li></a></ul></td>
+	<td>&nbsp;</td>
+	</tr>
+	
+</table>
+<?php } ?> 
+</div>
 
 <?php
 $codigoError = "";
