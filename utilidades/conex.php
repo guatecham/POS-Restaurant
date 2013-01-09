@@ -15,6 +15,6 @@ if (!$db)
 mysql_select_db("geempres_peregrino");
 
 date_default_timezone_set("America/Tegucigalpa");
-session_start(); 
+//session_start(); 
 
 ?>

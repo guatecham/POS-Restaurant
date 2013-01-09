@@ -1,1 +1,0 @@
-Ventas del dia

@@ -76,10 +76,19 @@ while ($row=mysql_fetch_object($rs)) {
 } // end while
 $total+=$subtotal;
 ?>  
+       <tr class="Estilo7">
+        <td align="center">&nbsp;</td>
+        <td align="right">&nbsp;</td>
+        <td align="right">&nbsp;</td>
+      </tr>   
+        <tr class="Estilo7">
+        <td align="center">&nbsp;</td>
+        <td align="right"><?php echo $rowMain->tipo ?></td>
+        <td align="right"><?php echo "Q.".number_format($subtotal,2) ?></td>
+      </tr>   
   </table>
 <br><br>
-
-<p><strong><?php echo "$rowMain->tipo: Q.".number_format($subtotal,2) ?></strong></p>
+<p>&nbsp;</p>
 <?php  
 } // end if
 } // end while (tipos)

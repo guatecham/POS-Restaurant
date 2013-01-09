@@ -1,6 +1,7 @@
 <?php
 include ('funciones.php');
 include ('../utilidades/conex.php'); 
+include ('../utilidades/seguridad_ventas.php');
 
 if (isset($_REQUEST["mesa"])) {
 	$mesa=$_REQUEST["mesa"];	
@@ -67,11 +68,6 @@ $(function(){
 	$("#producto").autocomplete("get_product_list.php", {
 		width: 360,
 		matchContains: true,
-		//mustMatch: true,
-		//minChars: 0,
-		//multiple: true,
-		//highlight: false,
-		//multipleSeparator: ",",
 		selectFirst: false
 	});
 

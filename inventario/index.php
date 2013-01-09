@@ -1,5 +1,6 @@
 <?php
-include ('../utilidades/conex.php'); 
+include ('../utilidades/conex.php');
+include ('../utilidades/seguridad_inventario.php'); 
 
 if (isset($_REQUEST["subtipo"])) {
 	$sql="SELECT * FROM inf_subtipos WHERE id_subtipo = ".$_REQUEST["subtipo"];
@@ -26,6 +27,7 @@ if (isset($_REQUEST["subtipo"])) {
 <link type="text/css" href="../css/sunny/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 <script type="text/javascript" src="../utilidades/jquery/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="../utilidades/jquery/js/jquery-ui-1.8.20.custom.min.js"></script>
+<script type='text/javascript' src='../utilidades/jquery/jquery-autocomplete.js'></script>
 <! Fin - Jquery >
 
 <script type="text/javascript">
@@ -39,14 +41,18 @@ $(function(){
 		function() { $(this).removeClass('ui-state-hover'); }
 	);
 	
-});	
+	$("#producto").autocomplete("get_product_list.php", {
+		width: 360,
+		matchContains: true,
+		selectFirst: false
+	});
 
-$(document).ready(function () {
-    $('img.menu_class').click(function () {
-	$('ul.the_menu').slideToggle('medium');
+	$(document).ready(function () {
+   	 	$('img.menu_class').click(function () {
+	   	$('ul.the_menu').slideToggle('medium');});
     });
-});
 
+});	
 </script>
 
 <script type="text/javascript" >
@@ -103,6 +109,13 @@ function validar_eliminar(id_producto, producto) {
 	} // end if
 	
 } // end function
+
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==13) document.getElementById('frm_autocomplete').submit();
+}
+
+
 </script>
 
 
@@ -126,8 +139,8 @@ function validar_eliminar(id_producto, producto) {
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>  
-        <div class="grid_5"><?php include ('list_pag.php') ?></div>
-        <div class="grid_7"><h2 class="title" align="center"><?php echo $titulo ?></h2><?php include ('detalle.php') ?></div>    
+        <div class="grid_5"><h2 class="title" align="center">Buscar Producto</h2><?php include ('search.php') ?></div>
+        <div class="grid_7"><h2 class="title" align="center"></h2><?php include ('detalle.php') ?></div>    
          <div class="clear"></div><br>
         <div class="grid_12"><?php include ('historial.php') ?></div>"
     </div>

@@ -11,13 +11,13 @@ $mesa=$_REQUEST["mesa"];
 <title>Orden mesa<?php echo $mesa ?></title>
 <style type="text/css">
 <!--
-.Estilo1 {
+.Estilo1 { 
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 18px;
+	font-size: 11px;
 }
 .Estilo6 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
 .Estilo7 {
-	font-size: 22px;
+	font-size: 14px;
 	color: #FF0000;
 }
 .Estilo8 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }
@@ -39,8 +39,8 @@ $mesa=$_REQUEST["mesa"];
     </div></td>
   </tr>
   <tr>
-    <td width="94" class="Estilo1"><span class="Estilo10">Mesa # <?php echo $mesa ?></span></td>
-    <td width="256" class="Estilo1"><div align="right"><span class="Estilo10"><?php echo date("d/m/Y")." / ".date("G:i a"); ?></span></div></td>
+    <td width="94" class="Estilo1">Mesa # <?php echo $mesa ?></td>
+    <td width="256" class="Estilo1"><div align="right"><?php echo date("d/m/Y")." / ".date("G:i a"); ?></div></td>
   </tr>
 </table>
 

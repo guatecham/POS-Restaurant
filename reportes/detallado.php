@@ -1,5 +1,6 @@
 <?php
 include ('../utilidades/conex.php'); 
+include ('../utilidades/seguridad_reportes.php');
 include ('det.php');
 
 $mes = array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
