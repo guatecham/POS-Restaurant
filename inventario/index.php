@@ -69,7 +69,7 @@ if (confirm('Esta seguro que quiere modificar la informacion para este producto 
 		}
 	}
 	
-	if (isNaN(document.getElementById('precio').value) || document.getElementById('precio').value <= 0  ) {
+	if (isNaN(document.getElementById('precio').value) || document.getElementById('precio').value < 0  ) {
 		document.getElementById('precio').value = precio;
 		alert("El precio debe ser un numero mayor que 0");
 		return 0;

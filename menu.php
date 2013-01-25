@@ -1,3 +1,13 @@
+<?php 
+	include('utilidades/seguridad.php');
+	include('utilidades/conex.php');
+
+// Verificar permisos de modulos
+
+	$sql="SELECT * FROM inf_usuarios WHERE id_usuario = ". $_SESSION["usuario_actual"];
+	$rs=mysql_query($sql,$db);
+	$row=mysql_fetch_object($rs);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,23 +40,57 @@
 		
 	<div id="tabs">
 	<ul>
+	<?php if ($row->mod_ventas == 1) { ?>
 		<li><a href="#tabs-1">Ventas</a></li>
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_inventario == 1) { ?>
 		<li><a href="#tabs-2">Inventario</a></li>
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_reportes == 1) { ?>
 		<li><a href="#tabs-3">Reportes</a></li>
-		<li><a href="#tabs-4">Salir</a></li>
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_gastos == 1) { ?>        
+		<li><a href="#tabs-4">Gastos</a></li>
+	<?php
+		} // end if
+	?>	
+		<li><a href="#tabs-5">Salir</a></li>
 	</ul>
+	<?php if ($row->mod_ventas == 1) { ?>
 	<div id="tabs-1">
 		<p><a href="ventas/index.php">Modulo de ventas</a></p>
 	</div>
-	<div id="tabs-2">
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_inventario == 1) { ?>	<div id="tabs-2">
 		<p><a href="inventario/index.php">Modulo de inventario</a></p>
 	</div>
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_reportes == 1) { ?>
 	<div id="tabs-3">
 		<p><a href="reportes/index.php">Modulo de Reportes</a></p>
 		</div>
-	<div id="tabs-4">
+	<?php
+		} // end if
+	?>	
+	<?php if ($row->mod_gastos == 1) { ?>	<div id="tabs-4">
+		<p><a href="gastos/index.php">Modulo de Gastos</a></p>
+		</div>
+	<?php
+		} // end if
+	?>	
+        <div id="tabs-5">
 		<p><a href="salida.php">Salir</a></p>
-		</div>	
+		</div>    
 	</div>
 </div>
 </body>

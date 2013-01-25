@@ -32,7 +32,7 @@ $mesa=$_REQUEST["mesa"];
 </head>
 
 <body>
-<table width="400" border="0" cellspacing="2" cellpadding="0">
+<table width="350" border="0" cellspacing="2" cellpadding="0">
   <tr>
     <td colspan="2"><div align="center">
       <p class="Estilo9"><span class="Estilo10">El Peregrino - Restaurante</span></p>
@@ -48,11 +48,49 @@ $mesa=$_REQUEST["mesa"];
 <p>&nbsp;</p>
 <h2 class="Estilo7">Pedido</h2>
 <?php
-$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND mesa = $mesa";
+/*
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
+$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1)";
+$sql.="AND mesa = $mesa";
+*/
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
+$sql.="WHERE subtipo > 1 AND subtipo < 4 ";
+$sql.="AND mesa = $mesa";
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) > 0) {	
 ?>
-<table width="400" border="0" align="left" cellpadding="0" cellspacing="1">
+<table width="350" border="0" align="left" cellpadding="0" cellspacing="1">
+<?php
+while ($row=mysql_fetch_object($rs)) {
+?>					  
+        <tr class="Estilo1">	
+	        <td align="center"><?php echo $row->cantidad ?>&nbsp;</td>
+	        <td align="left"><?php echo utf8_encode($row->producto) ?></td>
+      </tr>                      
+<?php
+} // end while
+$total+=$subtotal;
+?>  
+  </table>
+<br>
+<?php  
+} // end if
+?>
+
+<p>-----------------</p>        
+        <?php
+/*
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
+$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1)";
+$sql.="AND mesa = $mesa";
+*/
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
+$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND !(subtipo > 1 AND subtipo < 4) ";
+$sql.="AND mesa = $mesa";
+$rs=mysql_query($sql,$db);
+if (mysql_num_rows($rs) > 0) {	
+?>
+<table width="350" border="0" align="left" cellpadding="0" cellspacing="1">
 <?php
 while ($row=mysql_fetch_object($rs)) {
 ?>					  
@@ -70,7 +108,6 @@ $total+=$subtotal;
 <?php  
 } // end if
 ?>
-
 
 <?php
 /*

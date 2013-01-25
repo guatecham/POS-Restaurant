@@ -99,7 +99,7 @@ $total+=$subtotal;
     <td><hr /></td>
   </tr>
   <tr>
-    <td><div align="right"><span class="Estilo6 Estilo7 Estilo10">TOTAL <?php echo "Q.".$total.".00" ?></span></div></td>
+    <td><div align="right"><span class="Estilo6 Estilo7 Estilo10">TOTAL <?php echo "Q.".number_format($total,2) ?></span></div></td>
   </tr>
 </table>
 <p class="Estilo6 Estilo7">&nbsp;</p>
