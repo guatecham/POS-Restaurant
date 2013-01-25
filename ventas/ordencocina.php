@@ -48,11 +48,6 @@ $mesa=$_REQUEST["mesa"];
 <p>&nbsp;</p>
 <h2 class="Estilo7">Pedido</h2>
 <?php
-/*
-$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
-$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1)";
-$sql.="AND mesa = $mesa";
-*/
 $sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
 $sql.="WHERE subtipo > 1 AND subtipo < 4 ";
 $sql.="AND mesa = $mesa";
@@ -69,7 +64,6 @@ while ($row=mysql_fetch_object($rs)) {
       </tr>                      
 <?php
 } // end while
-$total+=$subtotal;
 ?>  
   </table>
 <br>
@@ -79,13 +73,9 @@ $total+=$subtotal;
 
 <p>-----------------</p>        
         <?php
-/*
 $sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
-$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1)";
-$sql.="AND mesa = $mesa";
-*/
-$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
-$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND !(subtipo > 1 AND subtipo < 4) ";
+//$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND !(subtipo > 1 AND subtipo < 4) ";
+$sql.="WHERE subtipo = 1 OR subtipo = 5";
 $sql.="AND mesa = $mesa";
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) > 0) {	
@@ -100,7 +90,6 @@ while ($row=mysql_fetch_object($rs)) {
       </tr>                      
 <?php
 } // end while
-$total+=$subtotal;
 ?>  
   </table>
 <br><br>
@@ -109,38 +98,6 @@ $total+=$subtotal;
 } // end if
 ?>
 
-<?php
-/*
-<table width="400" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td colspan="2" class="Estilo1"><hr /></td>
-  </tr>
-  <tr>
-    <td colspan="2" class="Estilo1"><span class="Estilo10"><strong>COMIDAS</strong></span></td>
-  </tr>
-<?php
-$sql="SELECT * FROM tmp_ventas WHERE mesa=$mesa";
-$result=mysql_query($sql,$db);
-while ($row=mysql_fetch_array($result)) {
- 	$p=$row["producto"];
-	$sql="SELECT * FROM inf_carta WHERE id_producto=$p";
-	$resultB=mysql_query($sql,$db);
-	$rowB=mysql_fetch_array($resultB);
-	if ($rowB["tipo"] == 2) {
- ?> 
-  <tr>
-    <td colspan="2" class="Estilo1">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="35" class="Estilo1"><span class="Estilo10"><?php echo $row["cantidad"] ?></span></td>
-    <td class="Estilo1"><span class="Estilo10"><?php echo $rowB["producto"] ?></span></td>
-  </tr>
- <?php
- 	} // end if
- } // end while
- ?>
-</table>
-*/ ?>
 <p class="Estilo6 Estilo7">&nbsp;</p>
 </body>
 </html>
