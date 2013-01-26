@@ -20,13 +20,19 @@ else {
 <div class="grid_12 title_small ui-state-highlight ui-corner-all"align=""center">
 <br>
 <?php
-$sql="SELECT SUM(cantidad) FROM data_gastos WHERE fecha='".date('Y-m-d')."'";
+$sql="SELECT SUM(cantidad) FROM data_gastos WHERE fecha BETWEEN '$desde' AND '$hasta' $sql_aux";
 $rs=mysql_query($sql,$db);
 $row=mysql_fetch_array($rs);
-$totalDia = $row["SUM(cantidad)"];
+$totalRango = $row["SUM(cantidad)"];
 ?>
-<div class="prefix_7 grid_3 alpha" align="right">Gastos en el dia:</div>
-<div class="grid_2 title_small omega"><strong><?php echo " Q.".number_format($totalDia,2) ?></strong></div>
+<div class="prefix_2 grid_8 alpha" align="right"><?php 
+$titulo = "Gastos desde $show_desde hasta $show_hasta";
+if ($cuenta != "") {
+	$titulo.=" de la cuenta <strong>$cuenta</strong>";
+} 
+echo "$titulo:"; 
+?></div>
+<div class="grid_2 title_small omega"><strong><?php echo " Q.".number_format($totalRango,2) ?></strong></div>
 <div class="clear"></div>
 <br>
 <div class="prefix_1 grid_10 sufix_1">
@@ -45,13 +51,13 @@ $totalDia = $row["SUM(cantidad)"];
 		<td colspan="5">&nbsp;</td>
 	</tr>
 <?php
-$sql="SELECT * FROM data_gastos ORDER BY fecha DESC, id_gasto DESC";
+//calculo el total de paginas
+$sql="SELECT * FROM data_gastos WHERE fecha BETWEEN '$desde' AND '$hasta' $sql_aux";
 $rs=mysql_query($sql,$db);
-$num_total_registros = mysql_num_rows($rs); 
-//calculo el total de paginas 
+$num_total_registros = mysql_num_rows($rs);  
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-$sql="SELECT * FROM data_gastos ORDER BY fecha DESC, id_gasto DESC LIMIT $inicio, $TAMANO_PAGINA";
+$sql="SELECT * FROM data_gastos WHERE fecha BETWEEN '$desde' AND '$hasta' $sql_aux ORDER BY fecha DESC, id_gasto DESC LIMIT $inicio, $TAMANO_PAGINA";
 $rs=mysql_query($sql,$db);
 while ($row=mysql_fetch_object($rs)) {
 	$factura="";
