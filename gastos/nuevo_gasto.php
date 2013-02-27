@@ -5,7 +5,7 @@ function validarGasto() {
         return 0;
     }
     
-    if (document.getElementById('cuenta').value == "") {
+    if (document.getElementById('cuenta_nueva').value == "") {
         alert('Debe seleccionar una cuenta o ingresar una nueva');
         return 0;
     }
@@ -29,7 +29,7 @@ function validarGasto() {
 <div class="clearfix"></div>
 
 <div class="grid_2 title_small" align="right">Cuenta:</div>
-<div class="grid_2" align="left"><input type="text" name="cuenta" id="cuenta" value=""></div>
+<div class="grid_2" align="left"><input type="text" name="cuenta_nueva" id="cuenta_nueva" value=""></div>
 <div class="grid_2 title_small" align="right">Descripcion:</div>
 <div class="grid_2" align="left"><input type="text" name="descripcion" id="descripcion" value="" size="30"></div>
 

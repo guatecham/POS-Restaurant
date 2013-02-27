@@ -8,7 +8,7 @@ $mesa=$_REQUEST["mesa"];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Orden mesa<?php echo $mesa ?></title>
+<title>Orden mesa <?php echo $mesa ?></title>
 <style type="text/css">
 <!--
 .Estilo1 { 
@@ -49,7 +49,7 @@ $mesa=$_REQUEST["mesa"];
 <h2 class="Estilo7">Pedido</h2>
 <?php
 $sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
-$sql.="WHERE subtipo > 1 AND subtipo < 5 ";
+$sql.="WHERE (subtipo > 1 AND subtipo < 5) ";
 $sql.="AND mesa = $mesa";
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) > 0) {	
@@ -73,9 +73,9 @@ while ($row=mysql_fetch_object($rs)) {
 
 <p>-----------------</p>        
         <?php
-$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
 //$sql.="WHERE subtipo IN (SELECT id_subtipo FROM inf_subtipos WHERE tipo = 1) AND !(subtipo > 1 AND subtipo < 4) ";
-$sql.="WHERE subtipo = 1 OR subtipo = 5 ";
+$sql="SELECT * FROM tmp_ventas INNER JOIN inf_carta ON tmp_ventas.producto = inf_carta.id_producto ";
+$sql.="WHERE (subtipo = 1 OR subtipo = 5) ";
 $sql.="AND mesa = $mesa";
 $rs=mysql_query($sql,$db);
 if (mysql_num_rows($rs) > 0) {	

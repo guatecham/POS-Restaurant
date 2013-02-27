@@ -1,5 +1,5 @@
 <?php
-//Inicio la sesión 
+//Inicio la sesion 
 session_start(); 
 
 if (!isset($_SESSION["autentificado"])) {

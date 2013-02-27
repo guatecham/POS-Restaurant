@@ -32,7 +32,7 @@ if (isset($_REQUEST["to"])) {
 	$show_hasta = $_REQUEST["to"];
 } else {
 	$hasta = date('Y-m-d');
-	$show_hasta = $_REQUEST["hasta"];
+	$show_hasta = date('d/m/Y');
 }
 
 if (isset($_REQUEST["cuenta"])) {
@@ -69,7 +69,13 @@ if (isset($_REQUEST["cuenta"])) {
   
         $("#datepicker").datepicker({ dateFormat: "dd/mm/yy" });
   
-        $("#cuenta").autocomplete("scripts/get_cuentas_list.php", {
+    $("#cuenta").autocomplete("scripts/get_cuentas_list.php", {
+		width: 200,
+		matchContains: true,
+		selectFirst: false
+	});
+	
+	 $("#cuenta_nueva").autocomplete("scripts/get_cuentas_list.php", {
 		width: 200,
 		matchContains: true,
 		selectFirst: false

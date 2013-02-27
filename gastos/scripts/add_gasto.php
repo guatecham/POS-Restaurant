@@ -3,7 +3,7 @@ include ('../../utilidades/conex.php');
 
 $fecha      = $_REQUEST["datepicker"];
 $cantidad   = $_REQUEST["cantidad"];
-$cuenta     = $_REQUEST["cuenta"];
+$cuenta     = $_REQUEST["cuenta_nueva"];
 if (isset($_REQUEST["factura"])) {
 	$factura	= $_REQUEST["factura"];
 } else {
@@ -21,7 +21,7 @@ $sql.="cuenta='$cuenta', ";
 $sql.="descripcion='$descripcion', ";
 $sql.="factura=$factura";
 
+
 $rs=mysql_query($sql,$db);
 header("Location:../index.php");
-
 ?>
